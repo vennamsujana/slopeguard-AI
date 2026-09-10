@@ -1,0 +1,9 @@
+Landslide_ID,Area_ID,Date,Village,Latitude,Longitude,Road_Name,Trigger,Severity,Road_Affected,Damage,Source
+LS-SK-001,SK-009,1957,Namli,NOT_REPORTED,NOT_REPORTED,NH-31A,Weak geology; steep slope; high water regime; vibration,NOT_REPORTED,Yes,Houses; land; forest; approximately 30 ha area in danger,NIDM Historical Landslide Records
+LS-SK-002,SK-010,1983,Manul,NOT_REPORTED,NOT_REPORTED,North Sikkim Highway,Steep slope; weak geology; heavy rain,HIGH,Yes,65 deaths; GREF camp wiped out,NIDM Historical Landslide Records
+LS-SK-003,SK-036,1997,Burdang; Singtam; Rangpo,NOT_REPORTED,NOT_REPORTED,NH-31A; Sillinge RF,Faults and cracks in rocks; weak geology; steep slope; high rainfall; vibration,HIGH,Yes,Approximately 10 ha affected; road disruption,NIDM Historical Landslide Records
+LS-SK-004,SK-010,1997,Tsochen; Pheri,NOT_REPORTED,NOT_REPORTED,NOT_REPORTED,Heavy rain; thick debris on steep slope,HIGH,NOT_REPORTED,7 deaths; 1 injured,NIDM Historical Landslide Records
+LS-SK-005,SK-001,1997,Gangtok and vicinity,NOT_REPORTED,NOT_REPORTED,NOT_REPORTED,Heavy rain; overflow of drain water,HIGH,Yes,43 deaths; 300 houses completely damaged; 1000 partially damaged,NIDM Historical Landslide Records
+LS-SK-006,SK-001,1995,Deorali; Gangtok,NOT_REPORTED,NOT_REPORTED,NOT_REPORTED,Water supply pipe burst and rain,HIGH,NOT_REPORTED,32 deaths; 8 houses completely damaged,NIDM Historical Landslide Records
+LS-SK-007,SK-022,2024-08-20,Dipudara; Balutar; Singtam,27.20,88.53,Singtam-Dikchu Road,NOT_REPORTED,HIGH,Yes,6 houses affected; residents evacuated; GIS building severely damaged; road inaccessible,Sikkim Government Press Release
+LS-SK-008,SK-026,2026-09-02,Rimbi,NOT_REPORTED,NOT_REPORTED,Geyzing-Pelling-Yuksom Road (SH-27),Heavy water flow from Siksa Khola,NOT_REPORTED,Yes,Road connectivity completely disrupted; no deaths or property damage reported,Sikkim Government Press Release

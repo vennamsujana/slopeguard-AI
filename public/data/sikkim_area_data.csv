@@ -1,0 +1,51 @@
+Area_ID,State,District,Village,Latitude,Longitude,Road_Name,Road_Status,Population,Risk_Level
+SK-001,Sikkim,Gangtok,Gangtok,27.3314,88.6138,NH-10,Open,100000,HIGH
+SK-002,Sikkim,Gangtok,Ranipool,27.2680,88.6120,NH-10,Open,8500,MEDIUM
+SK-003,Sikkim,Gangtok,Tadong,27.3080,88.5970,NH-10,Open,12000,MEDIUM
+SK-004,Sikkim,Gangtok,Rumtek,27.2900,88.5600,Rumtek Road,Open,6500,HIGH
+SK-005,Sikkim,Gangtok,Pakyong Road,27.2300,88.6660,Pakyong Road,Open,9000,MEDIUM
+SK-006,Sikkim,Pakyong,Pakyong,27.2300,88.6660,NH-717A,Open,5000,MEDIUM
+SK-007,Sikkim,Pakyong,Rhenock,27.1900,88.6300,Rhenock Road,Open,4500,HIGH
+SK-008,Sikkim,Pakyong,Rongli,27.2200,88.7000,Rongli Road,Open,6000,HIGH
+SK-009,Sikkim,Mangan,Mangan,27.5000,88.5300,NH-10,Open,3500,HIGH
+SK-010,Sikkim,Mangan,Chungthang,27.5900,88.6400,NH-310A,Restricted,2500,HIGH
+SK-011,Sikkim,Mangan,Lachen,27.7200,88.5600,Lachen Road,Restricted,1800,HIGH
+SK-012,Sikkim,Mangan,Lachung,27.6900,88.7400,Lachung Road,Open,2200,HIGH
+SK-013,Sikkim,Mangan,Dzongu,27.5300,88.6200,Dzongu Road,Restricted,3000,HIGH
+SK-014,Sikkim,Mangan,Singhik,27.5300,88.6100,NH-10,Open,1500,HIGH
+SK-015,Sikkim,Namchi,Namchi,27.1667,88.3500,Namchi Road,Open,12000,MEDIUM
+SK-016,Sikkim,Namchi,Jorethang,27.1060,88.3230,NH-510,Open,10000,MEDIUM
+SK-017,Sikkim,Namchi,Temi,27.1800,88.4200,Temi Road,Open,3500,HIGH
+SK-018,Sikkim,Namchi,Namthang,27.1200,88.5100,Namthang Road,Open,4000,MEDIUM
+SK-019,Sikkim,Namchi,Ravangla,27.3100,88.3630,NH-510,Open,6000,HIGH
+SK-020,Sikkim,Namchi,Kitam,27.1500,88.3000,Kitam Road,Open,2500,MEDIUM
+SK-021,Sikkim,Gyalshing,Gyalshing,27.2850,88.2600,NH-510,Open,6000,HIGH
+SK-022,Sikkim,Gyalshing,Pelling,27.3100,88.2400,Pelling Road,Open,5000,HIGH
+SK-023,Sikkim,Gyalshing,Yuksom,27.3700,88.2200,Yuksom Road,Open,3500,HIGH
+SK-024,Sikkim,Gyalshing,Legship,27.2100,88.2700,NH-510,Open,4500,MEDIUM
+SK-025,Sikkim,Gyalshing,Dentam,27.2300,88.1900,Dentam Road,Open,3000,HIGH
+SK-026,Sikkim,Soreng,Soreng,27.1700,88.1900,Soreng Road,Open,4500,HIGH
+SK-027,Sikkim,Soreng,Jorethang,27.1060,88.3230,NH-510,Open,10000,MEDIUM
+SK-028,Sikkim,Soreng,Chakung,27.1500,88.2100,Chakung Road,Open,2800,HIGH
+SK-029,Sikkim,Soreng,Daramdin,27.1200,88.1700,Daramdin Road,Open,3200,MEDIUM
+SK-030,Sikkim,Soreng,Kaluk,27.2000,88.1700,Kaluk Road,Open,2500,HIGH
+SK-031,Sikkim,South Sikkim,Ravangla,27.3100,88.3630,NH-510,Open,6000,HIGH
+SK-032,Sikkim,South Sikkim,Namchi,27.1667,88.3500,Namchi Road,Open,12000,MEDIUM
+SK-033,Sikkim,South Sikkim,Jorethang,27.1060,88.3230,NH-510,Open,10000,MEDIUM
+SK-034,Sikkim,South Sikkim,Borang,27.2500,88.3500,Borang Road,Open,2200,HIGH
+SK-035,Sikkim,South Sikkim,Tinkitam,27.1900,88.4000,Tinkitam Road,Open,1800,HIGH
+SK-036,Sikkim,East Sikkim,Rangpo,27.1770,88.5330,NH-10,Open,8000,HIGH
+SK-037,Sikkim,East Sikkim,Singtam,27.2350,88.5020,NH-10,Open,6000,HIGH
+SK-038,Sikkim,East Sikkim,Rorathang,27.2100,88.6500,Rorathang Road,Open,3000,MEDIUM
+SK-039,Sikkim,East Sikkim,Nathang Valley,27.3800,88.7500,Old Silk Route,Restricted,1200,HIGH
+SK-040,Sikkim,East Sikkim,Zuluk,27.3300,88.7650,Old Silk Route,Restricted,1500,HIGH
+SK-041,Sikkim,East Sikkim,Aritar,27.1700,88.6500,Aritar Road,Open,2800,MEDIUM
+SK-042,Sikkim,North Sikkim,Mangan,27.5000,88.5300,NH-10,Open,3500,HIGH
+SK-043,Sikkim,North Sikkim,Chungthang,27.5900,88.6400,NH-310A,Restricted,2500,HIGH
+SK-044,Sikkim,North Sikkim,Lachen,27.7200,88.5600,Lachen Road,Restricted,1800,HIGH
+SK-045,Sikkim,North Sikkim,Lachung,27.6900,88.7400,Lachung Road,Open,2200,HIGH
+SK-046,Sikkim,North Sikkim,Thangu,27.8500,88.7400,Thangu Road,Restricted,800,HIGH
+SK-047,Sikkim,North Sikkim,Yumthang,27.7900,88.6900,Yumthang Road,Restricted,700,HIGH
+SK-048,Sikkim,West Sikkim,Pelling,27.3100,88.2400,Pelling Road,Open,5000,HIGH
+SK-049,Sikkim,West Sikkim,Yuksom,27.3700,88.2200,Yuksom Road,Open,3500,HIGH
+SK-050,Sikkim,West Sikkim,Geyzing,27.2900,88.2600,NH-510,Open,5500,MEDIUM
