@@ -11,6 +11,7 @@ import Login from './components/Login';
 
 import { fetchAreasData, fetchLandslidesData, fetchResidentsData } from './services/dataFallback';
 import { getActiveSession, logoutUser } from './services/auth';
+import { fetchAllReports } from './services/reports';
 
 import { 
   ShieldAlert, 
@@ -42,6 +43,7 @@ export default function App() {
   const [areas, setAreas] = useState([]);
   const [landslides, setLandslides] = useState([]);
   const [residents, setResidents] = useState([]);
+  const [reports, setReports] = useState([]);
   const [loading, setLoading] = useState(true);
   const [reportTargetArea, setReportTargetArea] = useState(null);
   const [toastMessage, setToastMessage] = useState('');
@@ -53,7 +55,13 @@ export default function App() {
       setSession(active);
     }
     loadData();
+    loadReports();
   }, []);
+
+  const loadReports = async () => {
+    const reps = await fetchAllReports();
+    setReports(reps);
+  };
 
   const loadData = async () => {
     setLoading(true);
@@ -360,6 +368,7 @@ export default function App() {
                 landslides={landslides}
                 userRole={userRole}
                 currentUser={currentUser}
+                reports={reports}
                 onSelectAreaForReport={handleSelectAreaForReport}
               />
             )}
@@ -418,6 +427,8 @@ export default function App() {
                 initialArea={reportTargetArea}
                 userRole={userRole}
                 currentUser={currentUser}
+                reports={reports}
+                onReportsChange={setReports}
                 onSubmitReport={(newRep) => {
                   showToast('Report submitted successfully.');
                 }}

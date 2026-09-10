@@ -15,8 +15,17 @@ import {
   Radio,
   Clock
 } from 'lucide-react';
+import { fetchAllReports, submitReport, updateReportStatus, getLocalReports } from '../services/reports';
 
-export default function AbnormalReportUpload({ areas = [], initialArea, onSubmitReport, userRole, currentUser }) {
+export default function AbnormalReportUpload({ 
+  areas = [], 
+  initialArea, 
+  onSubmitReport, 
+  userRole, 
+  currentUser,
+  reports: propReports = [],
+  onReportsChange
+}) {
   const [activeSubTab, setActiveSubTab] = useState('submit'); // 'submit' | 'my-reports' | 'admin-review'
   const [selectedAreaId, setSelectedAreaId] = useState(initialArea?.Area_ID || (areas[0]?.Area_ID || 'SK-001'));
   const [reportType, setReportType] = useState('Road/Soil Cracks');
@@ -29,7 +38,7 @@ export default function AbnormalReportUpload({ areas = [], initialArea, onSubmit
   const [reportResult, setReportResult] = useState(null);
 
   // All reports store for admin review / resident status check
-  const [allReports, setAllReports] = useState([]);
+  const [allReports, setAllReports] = useState(() => propReports.length > 0 ? propReports : getLocalReports());
   const [actionNotification, setActionNotification] = useState('');
 
   const isAdmin = userRole === 'admin';
@@ -37,6 +46,12 @@ export default function AbnormalReportUpload({ areas = [], initialArea, onSubmit
   useEffect(() => {
     fetchReports();
   }, [activeSubTab]);
+
+  useEffect(() => {
+    if (propReports && propReports.length > 0) {
+      setAllReports(propReports);
+    }
+  }, [propReports]);
 
   useEffect(() => {
     if (initialArea?.Area_ID) {
@@ -52,15 +67,12 @@ export default function AbnormalReportUpload({ areas = [], initialArea, onSubmit
     }
   }, [isAdmin]);
 
-  const fetchReports = () => {
-    fetch('/api/reports')
-      .then(res => res.json())
-      .then(json => {
-        if (json.success && Array.isArray(json.data)) {
-          setAllReports(json.data);
-        }
-      })
-      .catch(err => console.error('Error fetching reports:', err));
+  const fetchReports = async () => {
+    const reps = await fetchAllReports();
+    setAllReports(reps);
+    if (onReportsChange) {
+      onReportsChange(reps);
+    }
   };
 
   const reportTypes = [
@@ -112,6 +124,7 @@ export default function AbnormalReportUpload({ areas = [], initialArea, onSubmit
 
     const localReport = {
       reportId: `REP-${Date.now().toString().slice(-6)}`,
+      userId: currentUser?.User_ID || 'USR-RES-001',
       areaId: selectedAreaObj.Area_ID,
       village: selectedAreaObj.Village || 'Gangtok',
       district: selectedAreaObj.District || 'Gangtok District',
@@ -136,69 +149,30 @@ export default function AbnormalReportUpload({ areas = [], initialArea, onSubmit
     };
 
     try {
-      const formData = new FormData();
-      formData.append('userId', currentUser?.User_ID || '');
-      formData.append('areaId', selectedAreaId);
-      formData.append('reportType', reportType);
-      formData.append('description', finalDescription);
-      formData.append('reporterName', finalReporterName);
-      formData.append('reporterPhone', finalReporterPhone);
-      formData.append('reporterEmail', finalReporterEmail);
-      if (imageFile) {
-        formData.append('image', imageFile);
+      const { report, allReports: updatedList } = await submitReport(localReport, imageFile);
+      setReportResult(report);
+      setAllReports(updatedList);
+      if (onReportsChange) {
+        onReportsChange(updatedList);
       }
-
-      const res = await fetch('/api/reports', {
-        method: 'POST',
-        body: formData
-      });
-
-      if (res.ok) {
-        const json = await res.json();
-        if (json.success && json.data) {
-          setReportResult(json.data);
-          setAllReports(prev => [json.data, ...prev]);
-          onSubmitReport && onSubmitReport(json.data);
-          fetchReports();
-        } else {
-          setReportResult(localReport);
-          setAllReports(prev => [localReport, ...prev]);
-          onSubmitReport && onSubmitReport(localReport);
-        }
-      } else {
-        setReportResult(localReport);
-        setAllReports(prev => [localReport, ...prev]);
-        onSubmitReport && onSubmitReport(localReport);
+      if (onSubmitReport) {
+        onSubmitReport(report);
       }
     } catch (err) {
-      console.warn('Backend API unavailable, using client-side SlopeGuard AI synthesis engine:', err);
-      setReportResult(localReport);
-      setAllReports(prev => [localReport, ...prev]);
-      onSubmitReport && onSubmitReport(localReport);
+      console.error('Error submitting report:', err);
     } finally {
       setSubmitting(false);
     }
   };
 
-  const handleUpdateReportStatus = (reportId, status, note = '') => {
-    fetch(`/api/reports/${reportId}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ status, note })
-    })
-      .then(res => res.json())
-      .then(json => {
-        if (json.success) {
-          setActionNotification(`Report ${reportId} marked as ${status.toUpperCase()}`);
-          fetchReports();
-          setTimeout(() => setActionNotification(''), 3000);
-        }
-      })
-      .catch(() => {
-        setAllReports(prev => prev.map(r => r.reportId === reportId ? { ...r, status } : r));
-        setActionNotification(`Report ${reportId} status updated to ${status.toUpperCase()}`);
-        setTimeout(() => setActionNotification(''), 3000);
-      });
+  const handleUpdateReportStatus = async (reportId, status, note = '') => {
+    const updatedList = await updateReportStatus(reportId, status, note);
+    setAllReports(updatedList);
+    if (onReportsChange) {
+      onReportsChange(updatedList);
+    }
+    setActionNotification(`Report ${reportId} marked as ${status.toUpperCase()}`);
+    setTimeout(() => setActionNotification(''), 3000);
   };
 
   const handleTriggerAlertFromReport = (report) => {

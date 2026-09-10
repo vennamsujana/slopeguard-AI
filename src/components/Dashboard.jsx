@@ -17,10 +17,11 @@ import {
   Info,
   ChevronRight,
   Radio,
-  FileText
+  FileText,
+  UploadCloud
 } from 'lucide-react';
 
-export default function Dashboard({ areas = [], landslides = [], userRole, currentUser, onSelectAreaForReport }) {
+export default function Dashboard({ areas = [], landslides = [], userRole, currentUser, onSelectAreaForReport, reports = [] }) {
   const [selectedArea, setSelectedArea] = useState(null);
   const [selectedLandslide, setSelectedLandslide] = useState(null);
   const [environmentalData, setEnvironmentalData] = useState(null);
@@ -631,6 +632,41 @@ export default function Dashboard({ areas = [], landslides = [], userRole, curre
           ))}
         </div>
       </div>
+
+      {/* 4.5. LIVE RESIDENT FIELD SUBMISSIONS FEED */}
+      {reports.length > 0 && (
+        <div className="glass-panel rounded-2xl p-6 border border-emerald-500/40 space-y-4">
+          <div className="flex items-center justify-between border-b border-slate-700 pb-3">
+            <div className="flex items-center gap-2">
+              <UploadCloud className="w-5 h-5 text-emerald-400" />
+              <h3 className="font-bold text-lg text-slate-100">Live Resident Field Submissions ({reports.length})</h3>
+            </div>
+            <span className="text-xs text-emerald-400 font-mono">Synced to Disaster Authority Review</span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {reports.slice(0, 4).map((rep) => (
+              <div key={rep.reportId} className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1.5 text-xs shadow">
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-emerald-400 font-bold">{rep.reportId}</span>
+                  <span className={`text-[9px] px-2 py-0.5 rounded font-bold uppercase ${
+                    rep.status === 'approved' || rep.status === 'alert_pushed' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' :
+                    rep.status === 'dismissed' ? 'bg-red-500/20 text-red-400 border border-red-500/30' : 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
+                  }`}>
+                    {rep.status ? rep.status.replace('_', ' ').toUpperCase() : 'PENDING REVIEW'}
+                  </span>
+                </div>
+                <div className="font-bold text-slate-100">{rep.reportType} — {rep.village} ({rep.roadName})</div>
+                <p className="text-slate-300 line-clamp-2">{rep.description}</p>
+                <div className="text-[10px] text-slate-400 font-mono pt-1 flex justify-between">
+                  <span>Reporter: <strong>{rep.reporterName}</strong></span>
+                  <span>{new Date(rep.timestamp).toLocaleDateString()}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* 5. SAFER ROUTE MODAL DRAWER */}
       {showSaferRouteModal && activeRoute && (
